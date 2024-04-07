@@ -56,7 +56,7 @@ jobs:
     needs: run-ui-tests
     steps:
     - name: Deploy to production
-      uses: johnbeynon/render-deploy-action@v1
+      uses: johnbeynon/render-deploy-action@v1.0.0
       with:
         service-id: ${{ secrets.RENDER_SERVICE_ID }}
         api-key: ${{ secrets.RENDER_API_KEY }}
