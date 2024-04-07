@@ -28,28 +28,28 @@ jobs:
     - name: Display SoftUni Username
       run: echo "amended"
 
-  # run-ui-tests:
-  #   needs: build-and-run-unit-tests
-  #   runs-on: ubuntu-latest
-  #   strategy:
-  #     matrix:
-  #       node-version: [18.x, 20.x, 21.x]
-  #   steps:
-  #   - name: Checkout Repository
-  #     uses: actions/checkout@v4
-  #   - name: Use Node.js ${{ matrix.node-version }}
-  #     uses: actions/setup-node@v4
-  #     with:
-  #       node-version: ${{ matrix.node-version }}
-  #       cache: 'npm'
-  #   - name: Install NPM Dependencies
-  #     run: npm install
-  #   - name: Install Playwright Browsers
-  #     run: npx playwright install
-  #   - name: Run Application
-  #     run: npm run start &  # & is used to run app in the background
-  #   - name: Run UI Tests
-  #     run: npm run test:ui
+  run-ui-tests:
+    needs: build-and-run-unit-tests
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x, 21.x]
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    - name: Install NPM Dependencies
+      run: npm install
+    - name: Install Playwright Browsers
+      run: npx playwright install
+    - name: Run Application
+      run: npm run start &  # & is used to run app in the background
+    - name: Run UI Tests
+      run: npm run test:ui
 
   # deploy-to-render:
   #   runs-on: ubuntu-latest
